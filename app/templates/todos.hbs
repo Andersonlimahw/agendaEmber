@@ -1,0 +1,73 @@
+
+<div class="row"> 
+	<div class="col-md-4">
+		{{#link-to 'todos.new' class="btn btn-success"}}
+			Create Todo
+		 {{/link-to}}
+
+	<hr>
+		{{outlet}}
+	</div>
+	<div class="col-md-8">
+
+	  <div class="row">
+	  		 <div class="col-md-12">
+	  		 	 <form class="form-inline">
+
+	  		 	 	 <div class="form-group">
+
+	  		 	 	  {{input type="text" class="form-control" value=filter id="search" placeholder="Search a Todos...."}}
+
+	  		 	 	 </div>
+
+	  		 	 	 <button type="submit" class="btn btn-primary"> Search </button>
+	  		 	 </form>
+	  		 </div>
+	   </div>
+
+	   <hr> <br>
+
+	   {{#if filter }}
+
+	   		{{#each filteredTodos as |todo|}}
+			<div class="well">
+				<h4>
+
+				{{#link-to 'todos.edit' todo.id}} 
+					{{todo.title}} 
+				{{/link-to}}
+
+				<span class="label label-primary pull-right">{{format-date  todo.date}}</span>
+				</h4>
+
+				{{format-markdown todo.body}}
+			</div>
+		{{/each}}
+
+	   	{{else}}
+	   		{{#each sortedTodos as |todo|}}
+			<div class="well">
+				<h4>
+
+				{{#link-to 'todos.edit' todo.id}} 
+					{{todo.title}} 
+				{{/link-to}}
+
+				<span class="label label-primary pull-right">{{format-date  todo.date}}</span>
+				</h4>
+
+				{{format-markdown todo.body}}
+			</div>
+		{{/each}}
+
+	   {{/if}}
+
+		
+
+		
+	</div>
+</div>
+
+
+
+
